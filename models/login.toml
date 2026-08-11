@@ -1,0 +1,10 @@
+origin_resource = "account"
+
+[[create_resource]]
+create_from = { property = "login" }
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.function | lower -}}-{{- origin_resource.environment | lower -}}-{{- property.value | lower -}}"
+[create_resource.properties]
+function = "{{- property.value | lower -}}"
+provider = "{{- origin_resource.provider[0].name | lower -}}"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

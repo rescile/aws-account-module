@@ -1,14 +1,14 @@
-# AWS Region Module
+# AWS Account Module
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Rescile UCS](https://img.shields.io/badge/provisioned%20by-Rescile%20UCS-purple.svg)](https://www.rescile.com/)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-An open-source Infrastructure as Code module for defining and provisioning an **AWS Region** as a managed infrastructure target. The module is designed for use with **Rescile UCS**, providing a standardized building block that can be combined with other infrastructure modules to construct complete cloud and hybrid-cloud environments.
+An open-source Infrastructure as Code module for defining and provisioning an **AWS Account** as a managed infrastructure target. The module is designed for use with **Rescile UCS**, providing a standardized building block that can be combined with other infrastructure modules to construct complete cloud and hybrid-cloud environments.
 
 ## What is this module?
 
-This module creates and configures an AWS Region as a managed infrastructure target for subsequent resource deployments. It provides the foundation on which additional AWS resources can be provisioned, connected and managed through the Rescile UCS infrastructure model. The goal is to establish a simple, reusable and community-extensible resource model for AWS infrastructure.
+This module creates and configures an AWS Account as a managed infrastructure target for subsequent resource deployments. It provides the foundation on which additional AWS resources can be provisioned, connected and managed through the Rescile UCS infrastructure model. The goal is to establish a simple, reusable and community-extensible resource model for AWS infrastructure.
 
 ## Rescile UCS
 
@@ -23,16 +23,16 @@ This module is part of the **Rescile UCS infrastructure ecosystem**. Rescile UCS
                │
                ▼
 ┌─────────────────────────────┐
-│      AWS Region Module      │
+│      AWS Account Module     │
 │                             │
-│      aws_region             │
+│      aws_account            │
 └──────────────┬──────────────┘
                │
                ▼
 ┌─────────────────────────────┐
-│        AWS Region           │
+│        AWS Account          │
 │                             │
-│  eu-central-1 / us-east-1   │
+│                             │
 │  ...                        │
 └─────────────────────────────┘
 ```
@@ -41,19 +41,19 @@ UCS provides the common control plane, while individual modules describe the inf
 
 ## Resources
 
-| Resource     | Description                                                              |
-| ------------ | ------------------------------------------------------------------------ |
-| `aws-region` | Creates and configures an AWS Region as a managed infrastructure target. |
+| Resource      | Description                                                               |
+| ------------- | ------------------------------------------------------------------------- |
+| `aws-account` | Creates and configures an AWS Account as a managed infrastructure target. |
 
 The resource catalog is intentionally small at this stage. Additional AWS resources are expected to be contributed by the community.
 
 ## Example
 
-A minimal configuration can define an AWS Region as follows:
+A minimal configuration can define an AWS Account as follows:
 
 ```toml
-[aws_region]
-name = "eu-central-1"
+[create_resouce]
+name = "your_name"
 ```
 
 The module can then be used by Rescile UCS as the foundation for subsequent infrastructure resources.
@@ -61,7 +61,7 @@ The module can then be used by Rescile UCS as the foundation for subsequent infr
 For example:
 
 ```text
-AWS Region
+AWS Account
     │
     ├── VPC
     │    ├── Subnet
@@ -83,18 +83,13 @@ AWS Region
 ├── LICENSE
 ├── NOTICE
 ├── CONTRIBUTING.md
-├── app/
-│   └── ...
-├── generator/
-│   └── ...
-├── input/
-│   └── aws_regions.json
 ├── data/
 │   └── models/
-│       ├── region.toml
-│       ├── kms.toml
-│       ├── router.toml
-│       └── availability-zone.toml
+│       ├── account.toml
+│       ├── login.toml
+│       ├── resolver.toml
+│       ├── zone.toml
+│       └── record.toml
 ├── output/
 │   └── ...
 └── runtimes/
@@ -102,9 +97,7 @@ AWS Region
 └── module.toml
 ```
 
-The exact structure may evolve as additional resources are introduced.
-
-The intention is to keep resources independently understandable and make it straightforward for contributors to add new AWS capabilities.
+The exact structure may evolve as additional resources are introduced. The intention is to keep resources independently understandable and make it straightforward for contributors to add new AWS capabilities.
 
 ## Contributing
 

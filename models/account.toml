@@ -1,42 +1,21 @@
-origin_resource = "provider"
+origin_resource = "subscription"
+provider = { "json!" = "provider.json", jmespath = '["Amazon Web Services"]' }
 
 [[create_resource]]
-create_from = { property = "account" }
+create_from = { property = "environment", as = "account" }
 relation_type = "SATISFIES"
-name = "{{- origin_resource.name | upper -}}-{{- origin_resource.subscription[0].name | upper -}}-{{- property.value | upper -}}"
+name = "AWS-{{- origin_resource.name | upper -}}-{{- property.value | upper -}}"
 [create_resource.properties]
 function = "salesforce"
-provider = "{{- origin_resource.name | lower -}}"
+provider = "{{- provider -}}"
 environment = "{{- property.value | lower -}}"
+home_region = "{{- origin_resource.home | lower -}}"
 template = "Core"
+resolver = ["private"] # Determines the scope, valid entries are "private" and "public"
 key = "kpt-sf-prod"
 login = ["account-administrator"]
-description = "The {{ origin_resource.name  }} account is a secure digital identity that grants authorized access to {{ origin_resource.name | capitalize }}'s cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
+description = "The {{ origin_resource.name | lower }} account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-[[create_resource]]
-resource_type = "account"
-relation_type = "SATISFIES"
-name = "{{- origin_resource.name | upper -}}-{{- origin_resource.subscription[0].name | upper -}}-SRE"
-[create_resource.properties]
-function = "development"
-provider = "{{- origin_resource.name | lower -}}"
-environment = "sre"
-template = "Core"
-key = "kpt-sre"
-login = ["account-administrator"]
-description = "The {{ origin_resource.name  }} account is a secure digital identity that grants authorized access to {{ origin_resource.name | capitalize }}'s cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
-created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-origin_resource = "subscription"
-
-[[link_resources]]
-with = "account"
-join = { local = "provider", remote = "provider" }
-create_relation = { type = "DEFINED_BY" }
-copy_properties = [
-  { from = "home", as = "home_region" }
-]
 
 origin_resource = "identity"
 

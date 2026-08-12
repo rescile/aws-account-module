@@ -1,4 +1,0 @@
-ame,function,zone,provider,description
-dev,A,my.salesforce.com,aws,"The zone record is a single entry within a DNS zone that maps dev to an IP address. The record has a type (A, AAAA, MX, CNAME, TXT, etc.), a TTL, and the data relevant to that type."
-int,A,my.salesforce.com,aws,"The zone record is a single entry within a DNS zone that maps int to an IP address. The record has a type (A, AAAA, MX, CNAME, TXT, etc.), a TTL, and the data relevant to that type."
-prod,A,my.salesforce.com,aws,"The zone record is a single entry within a DNS zone that maps prod to an IP address. The record has a type (A, AAAA, MX, CNAME, TXT, etc.), a TTL, and the data relevant to that type."

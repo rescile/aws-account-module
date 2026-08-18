@@ -4,46 +4,54 @@
 [![Rescile UCS](https://img.shields.io/badge/provisioned%20by-Rescile%20UCS-purple.svg)](https://www.rescile.com/)
 [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-An open-source Infrastructure as Code module for defining and provisioning an **AWS Account** as a managed infrastructure target. The module is designed for use with **Rescile UCS**, providing a standardized building block that can be combined with other infrastructure modules to construct complete cloud and hybrid-cloud environments.
+This module defines a foundation for resource deployments on AWS. The module is designed for use with **Rescile UCS**, providing a standardized building block that can be combined with other infrastructure modules to construct complete cloud and hybrid-cloud environments.
 
 ## What is this module?
 
-This module creates and configures an AWS Account as a managed infrastructure target for subsequent resource deployments. It provides the foundation on which additional AWS resources can be provisioned, connected and managed through the Rescile UCS infrastructure model. The goal is to establish a simple, reusable and community-extensible resource model for AWS infrastructure.
+This module creates and configures an **AWS Account** as a managed infrastructure target for subsequent resource deployments. It provides the foundation on which additional AWS resources can be provisioned, connected and managed through the Rescile UCS infrastructure model. The goal is to establish a simple, reusable and community-extensible resource model for AWS infrastructure.
 
 ## Rescile UCS
 
-This module is part of the **Rescile UCS infrastructure ecosystem**. Rescile UCS acts as the provisioning and orchestration environment. It maintains the infrastructure model, resolves dependencies and drives the execution of infrastructure changes. The relationship can be summarized as:
+The module serves as  part of the **Rescile UCS infrastructure ecosystem**. Rescile UCS acts as the provisioning and orchestration environment. It maintains the infrastructure model, resolves dependencies and drives the execution of infrastructure changes. The relationship can be summarized as:
 
 ```text
-┌─────────────────────────────┐
-│        Rescile UCS          │
-│                             │
-│  Model → Resolve → Deploy   │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│      AWS Account Module     │
-│                             │
-│      aws_account            │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│        AWS Account          │
-│                             │
-│                             │
-│  ...                        │
-└─────────────────────────────┘
+┌──────────────────────────────┐
+│         Rescile UCS          │
+│                              │
+│   Model → Resolve → Deploy   │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│   Base Subscription Module   │
+│                              │
+│                              │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│      AWS Account Module      │
+│                              │
+│                              │
+│  ...                         │
+└──────────────────────────────┘
 ```
 
 UCS provides the common control plane, while individual modules describe the infrastructure resources that can be provisioned. This separation allows modules to remain focused on **what infrastructure should exist**, while UCS manages **how infrastructure is modeled, related and provisioned**. For more information, see the [Rescile UCS project](https://www.rescile.com/).
 
 ## Resources
 
-| Resource      | Description                                                               |
-| ------------- | ------------------------------------------------------------------------- |
-| `aws-account` | Creates and configures an AWS Account as a managed infrastructure target. |
+| Resource            | Description                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| `account`           | Creates and configures an AWS Account as a managed infrastructure target. |
+| `availability-zone` | tbd. |
+| `kms`               | tbd. |
+| `login`             | tbd. |
+| `record`            | tbd. |
+| `region`            | tbd. |
+| `resolver`          | tbd. |
+| `router`            | tbd. |
+| `zone`              | tbd. |
 
 The resource catalog is intentionally small at this stage. Additional AWS resources are expected to be contributed by the community.
 
